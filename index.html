@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InteliFixer</title>
+    <link rel="stylesheet" href="src/styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Local CI failure triage</p>
+        <h1>InteliFixer</h1>
+      </div>
+      <nav class="header-actions" aria-label="Primary actions">
+        <button id="loadSample" class="button secondary" type="button">Load Sample</button>
+        <button id="analyze" class="button primary" type="button">Analyze</button>
+      </nav>
+    </header>
+
+    <main class="workspace">
+      <section class="input-pane" aria-label="Failure input">
+        <div class="toolbar">
+          <div class="segmented" role="tablist" aria-label="Input mode">
+            <button class="segment active" data-mode="single" type="button">Single Run</button>
+            <button class="segment" data-mode="batch" type="button">Batch</button>
+          </div>
+          <button id="clear" class="icon-button" type="button" title="Clear input" aria-label="Clear input">Clear</button>
+        </div>
+
+        <label class="field-label" for="logInput">Console log</label>
+        <textarea id="logInput" spellcheck="false" placeholder="Paste a console log here..."></textarea>
+
+        <label class="field-label" for="stageInput">Stage status JSON</label>
+        <textarea id="stageInput" spellcheck="false" placeholder='Optional, for example: {"Init":"success","Test":"failed"}'></textarea>
+
+        <label class="field-label" for="batchInput">Batch JSON</label>
+        <textarea id="batchInput" spellcheck="false" hidden placeholder='Optional array: [{"id":"run-1","log":"...","stageStatus":{"Test":"failed"}}]'></textarea>
+      </section>
+
+      <section class="results-pane" aria-live="polite">
+        <div class="summary-grid">
+          <article class="metric">
+            <span class="metric-label">Runs</span>
+            <strong id="runCount">0</strong>
+          </article>
+          <article class="metric">
+            <span class="metric-label">High Severity</span>
+            <strong id="highCount">0</strong>
+          </article>
+          <article class="metric">
+            <span class="metric-label">Top Category</span>
+            <strong id="topCategory">None</strong>
+          </article>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="pipeline-visual" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <h2>Paste a failing log or load the sample data.</h2>
+          <p>InteliFixer classifies the likely failure, extracts evidence, and drafts a short handoff note.</p>
+        </div>
+
+        <div id="results" class="results" hidden></div>
+
+        <section id="reportPanel" class="report-panel" hidden>
+          <div class="panel-header">
+            <h2>Markdown Report</h2>
+            <button id="copyReport" class="button secondary" type="button">Copy</button>
+          </div>
+          <pre id="report"></pre>
+        </section>
+      </section>
+    </main>
+
+    <template id="resultTemplate">
+      <article class="result-card">
+        <div class="card-topline">
+          <div>
+            <h2 class="result-title"></h2>
+            <p class="result-subtitle"></p>
+          </div>
+          <span class="severity"></span>
+        </div>
+        <div class="diagnosis-row">
+          <div>
+            <span class="label">Likely cause</span>
+            <strong class="category"></strong>
+          </div>
+          <div>
+            <span class="label">Stage</span>
+            <strong class="stage"></strong>
+          </div>
+          <div>
+            <span class="label">Confidence</span>
+            <strong class="confidence"></strong>
+          </div>
+        </div>
+        <div class="evidence-block">
+          <span class="label">Evidence</span>
+          <ul class="evidence"></ul>
+        </div>
+        <div class="action-block">
+          <span class="label">Next action</span>
+          <p class="action"></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="src/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "demo-101",
+    "name": "Nightly API smoke",
+    "owner": "platform-ci",
+    "stageStatus": {
+      "Init": "success",
+      "Provision": "success",
+      "Test": "failed",
+      "Collect": "skipped"
+    },
+    "log": "2026-05-29 12:01:21 INFO Starting nightly API smoke\n2026-05-29 12:02:18 INFO Running pytest tests/api\n2026-05-29 12:02:44 ERROR RuntimeError: service health check timed out after 180s\n2026-05-29 12:02:44 ERROR script returned exit code 1\n2026-05-29 12:02:45 INFO Collecting artifacts"
+  },
+  {
+    "id": "demo-202",
+    "name": "Device bringup",
+    "owner": "lab-ci",
+    "stageStatus": {
+      "Init": "success",
+      "Provision": "failed",
+      "Test": "skipped",
+      "Collect": "success"
+    },
+    "log": "2026-05-29 14:15:03 INFO Reserving device\n2026-05-29 14:17:39 ERROR Could not find console details for device edge-07\n2026-05-29 14:17:40 ERROR Provision stage failed\n2026-05-29 14:17:41 INFO Releasing reservation"
+  },
+  {
+    "id": "demo-303",
+    "name": "Config validation",
+    "owner": "network-ci",
+    "stageStatus": {
+      "Init": "success",
+      "Provision": "success",
+      "Test": "failed",
+      "Collect": "success"
+    },
+    "log": "2026-05-29 17:40:11 INFO Loading topology\n2026-05-29 17:40:12 ERROR ValueError: File not found: configs/site-west.yaml\n2026-05-29 17:40:12 ERROR config file configs/site-west.yaml not found\n2026-05-29 17:40:13 INFO Done"
+  }
+]
