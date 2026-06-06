@@ -24,6 +24,12 @@ Then open:
 http://localhost:4173
 ```
 
+For a reviewer-ready demo with the synthetic sample results loaded:
+
+```text
+http://localhost:4173/?demo=sample
+```
+
 ## What It Does
 
 - Detects common CI failure signals from pasted logs.

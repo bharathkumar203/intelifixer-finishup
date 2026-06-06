@@ -1,16 +1,17 @@
 ---
 title: Finishing InteliFixer: From Internal Hackathon Script To Local CI Failure Workbench
 published: false
-tags: devchallenge, githubchallenge
+tags: devchallenge, githubchallenge, githubcopilot
 ---
 
 *This is a submission for the [GitHub Finish-Up-A-Thon Challenge](https://dev.to/challenges/github-2026-05-21).*
 
 ## What I Built
 
-InteliFixer is a local-first CI failure triage workbench. You paste a console
-log, optional stage status JSON, or a batch of run records, and it produces a
-compact triage result:
+InteliFixer is a local-first CI failure triage workbench.
+
+You paste a console log, optional stage status JSON, or a batch of run records,
+and it produces a compact triage result:
 
 - likely failure category
 - failed stage
@@ -21,7 +22,7 @@ compact triage result:
 
 The project started as a 2024 hackathon prototype for reducing time spent
 reading long CI logs. The idea was useful, but the prototype was not something I
-could share publicly or hand to another developer.
+could safely share publicly or hand to another developer.
 
 The revived version is a static browser app. It runs without a backend, secrets,
 tokens, or network calls.
@@ -30,15 +31,27 @@ tokens, or network calls.
 
 Project repository:
 
-<!-- Add public GitHub repository URL here. -->
+<!-- TODO: add public GitHub repository URL after pushing. -->
 
 Live demo:
 
-<!-- Add GitHub Pages URL here. -->
+<!-- TODO: add GitHub Pages URL after enabling Pages. Suggested demo URL: https://<github-user>.github.io/<repo-name>/?demo=sample -->
 
 Screenshots:
 
-<!-- Add before/after screenshots or a short walkthrough GIF/video. -->
+<!-- TODO: upload /Users/bputta/Documents/intelifixer-finishup/.artifacts/intelifixer-desktop-sample.png to this DEV post. Optional mobile screenshot: /Users/bputta/Documents/intelifixer-finishup/.artifacts/intelifixer-mobile-sample.png -->
+
+Run locally:
+
+```bash
+python3 -m http.server 4173
+```
+
+Then open:
+
+```text
+http://localhost:4173/?demo=sample
+```
 
 ## The Comeback Story
 
@@ -61,21 +74,41 @@ the old project fragile:
 3. I added generic failure pattern detection.
 4. I added a dashboard UI with severity, confidence, evidence, and next actions.
 5. I added Markdown export for incident comments.
-6. I wrote a README, privacy note, and before/after documentation.
+6. I added a demo mode that can preload sanitized sample results.
+7. I wrote a README, privacy note, and before/after documentation.
 
 The result is smaller, safer, and more usable than the original prototype.
+
+## Before And After
+
+Before:
+
+- terminal-driven flow
+- private endpoints and sensitive defaults
+- no public demo data
+- no polished handoff format
+- difficult to explain or share
+
+After:
+
+- static app that runs in the browser
+- synthetic sample data
+- generic classification rules for common CI failures
+- responsive triage UI
+- copyable Markdown incident report
+- no server, token, or data upload
 
 ## My Experience with GitHub Copilot
 
 <!-- Replace this section honestly after using GitHub Copilot. Suggested real steps:
 
 - Open the project in VS Code with GitHub Copilot enabled.
-- Ask Copilot to review README.md for clarity.
-- Ask Copilot Chat to suggest one additional generic CI failure pattern.
-- Ask Copilot to improve one UI label or empty state.
-- Commit the accepted changes.
+- Ask Copilot Chat: "Review this static app for submission-readiness. Focus on bugs, privacy concerns, unclear UI copy, and demo flow."
+- Ask Copilot Chat: "Suggest one more generic CI failure pattern that does not depend on private company systems."
+- Ask Copilot to review README.md and docs/BEFORE_AFTER.md for clarity.
+- Accept only the changes you actually agree with.
 
-Then replace this comment with what Copilot actually helped with.
+Then replace this comment with what Copilot actually helped with. Do not claim Copilot work that did not happen.
 -->
 
 ## What I Learned

@@ -74,7 +74,13 @@ elements.analyze.addEventListener("click", () => {
   renderResults(runs.map(analyzeRun));
 });
 
-elements.loadSample.addEventListener("click", async () => {
+elements.loadSample.addEventListener("click", loadSampleRuns);
+
+if (new URLSearchParams(window.location.search).get("demo") === "sample") {
+  loadSampleRuns();
+}
+
+async function loadSampleRuns() {
   const response = await fetch("data/sample-runs.json");
   const runs = await response.json();
   if (mode === "single") {
@@ -84,7 +90,7 @@ elements.loadSample.addEventListener("click", async () => {
     elements.batchInput.value = JSON.stringify(runs, null, 2);
   }
   renderResults(runs.map(analyzeRun));
-});
+}
 
 elements.clear.addEventListener("click", () => {
   elements.logInput.value = "";
