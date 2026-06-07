@@ -42,6 +42,8 @@ Screenshots:
 The live demo link opens with sanitized sample results preloaded. I also tested
 the app locally with desktop and mobile screenshots before publishing.
 
+![InteliFixer sample triage dashboard](https://raw.githubusercontent.com/bharathkumar203/intelifixer-finishup/main/docs/assets/intelifixer-desktop-sample.png)
+
 Run locally:
 
 ```bash
